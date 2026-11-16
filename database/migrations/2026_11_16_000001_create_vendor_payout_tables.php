@@ -4,7 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     public function up(): void
     {
         $prefix = config('itmosoft-vendor-payouts.table_prefix', 'itmosoft_');
@@ -24,7 +25,7 @@ return new class extends Migration {
             $table->timestamps();
             $table->index(['vendor_id', 'currency', 'status']);
         });
-        Schema::create($prefix.'vendor_earnings', function (Blueprint $table): void {
+        Schema::create($prefix.'vendor_earnings', function (Blueprint $table) use ($prefix): void {
             $table->id();
             $table->unsignedBigInteger('vendor_id')->index();
             $table->string('source_type')->nullable();
